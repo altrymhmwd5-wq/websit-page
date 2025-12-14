@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/Style/FormStyle.css">
+    <title>Contact Form</title>
+
+</head>
+
+<body>
+    <spline-viewer url="https://prod.spline.design/UErKQRTjq47fHOIc/scene.splinecode" class="model3D"></spline-viewer>
+    <div class="form-container">
+        <div class="header">
+            <h1>Get in Touch</h1>
+            <p>We would love to hear from you! Please fill out the form below to reach us.</p>
+        </div>
+        <div class="divider">
+            <hr>
+        </div>
+        <div class="spacer">
+            <!-- حنضيف فيه مسافة -->
+        </div>
+        <div class="info">
+            <h2>Contact Information</h2>
+            <p>Email:
+                <a href="mailto:info@seafreight.com">info@seafreight.com</a>
+            </p>
+            <p>Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
+            <p>Address: 123 Sea Freight Ave, Port City</p>
+        </div>
+        <form class="form" id="crudForm">
+            <h2>Contact Us</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" ></textarea>
+
+            <button type="submit" id="submitBtn">➕ Add</button>
+        </form>
+
+        <input type="text" id="search" placeholder="🔍 Search by name or email" />
+
+        <ul id="userList"></ul>
+    </div>
+
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

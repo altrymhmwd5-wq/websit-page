@@ -1,0 +1,558 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-x: hidden;
+    /* منع التمرير الأفقي */
+    position: relative;
+    /* لجعل 3D خلفية ثابتة */
+}
+
+.model3D {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    /* تغيير من absolute إلى fixed */
+    top: 0;
+    left: 0;
+    z-index: 0;
+    /* خلف النموذج مباشرة */
+    /* pointer-events: none; لا يتفاعل مع الماوس */
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.4);
+    /* More transparent */
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    padding: 32px 24px;
+    max-width: 400px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    /* زيادة قيمة z-index */
+    backdrop-filter: blur(8px);
+    /* Optional: glass effect */
+    -webkit-backdrop-filter: blur(8px);
+    position: relative;
+    /* لضمان البقاء في مكانه */
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: #2a4d69;
+}
+
+.header p {
+    color: #4b86b4;
+    margin-bottom: 12px;
+}
+
+.divider hr {
+    border: none;
+    border-top: 2px solid #4b86b4;
+    width: 60%;
+    margin: 12px auto;
+}
+
+.spacer {
+    height: 20px;
+    /* يضيف فراغ عمودي */
+}
+
+.info {
+    background: rgba(76, 175, 80, 0.07);
+    border-radius: 12px;
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 18px;
+    color: #2a4d69;
+}
+
+.info h2 {
+    margin-top: 0;
+    font-size: 1.1rem;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form h2 {
+    margin-bottom: 8px;
+    color: #2a4d69;
+}
+
+.form label {
+    font-weight: 500;
+    color: #4b86b4;
+}
+
+.form input,
+.form textarea {
+    border: 1px solid #b3c6e6;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.85);
+    margin-bottom: 8px;
+    transition: border-color 0.2s;
+    width: 100%;
+    /* إضافة */
+}
+
+.form input:focus,
+.form textarea:focus {
+    border-color: #4b86b4;
+    outline: none;
+}
+
+.form button {
+    background: #4b86b4;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%;
+    /* إضافة */
+}
+
+.form button:hover {
+    background: #2a4d69;
+}
+
+#search {
+  margin-top: 1.5rem;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 25px;
+  width: 80%;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #f4f4f4;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li span {
+  flex-grow: 1;
+}
+
+.actions button {
+  margin-left: 8px;
+  padding: 6px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.actions .edit {
+  background-color: #03a9f4;
+  color: white;
+}
+
+.actions .delete {
+  background-color: #e91e63;
+  color: white;
+}
+
+/* ===== MEDIA QUERIES ===== */
+
+/* Tablets and small laptops */
+@media (max-width: 1024px) {
+    .form-container {
+        padding: 28px 20px;
+        max-width: 380px;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .header p {
+        font-size: 0.95rem;
+    }
+
+    .info h2 {
+        font-size: 1rem;
+    }
+
+    .form h2 {
+        font-size: 1.1rem;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .form-container {
+        padding: 24px 18px;
+        max-width: 350px;
+        margin: 20px auto;
+    }
+
+    .header h1 {
+        font-size: 1.6rem;
+    }
+
+    .header p {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    .info {
+        padding: 10px;
+    }
+
+    .info p {
+        font-size: 0.9rem;
+    }
+
+    .form input,
+    .form textarea {
+        padding: 7px;
+        font-size: 0.95rem;
+    }
+
+    .form button {
+        padding: 9px;
+        font-size: 0.95rem;
+    }
+
+    .model3D {
+        height: 100vh;
+        width: 100vw;
+    }
+}
+
+/* Mobile devices (landscape and portrait) */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+        min-height: 100vh;
+        justify-content: flex-start;
+        /* تغيير من center إلى flex-start */
+        margin-top: 20px;
+        /* إضافة مسافة من الأعلى */
+    }
+
+    .form-container {
+        padding: 20px 15px;
+        max-width: 100%;
+        margin: 0 auto;
+        /* توسيط النموذج */
+        border-radius: 15px;
+        margin-top: 60px;
+        /* زيادة المسافة من الأعلى */
+        position: relative;
+        left: 0;
+        right: 0;
+        transform: none;
+    }
+
+    .header h1 {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    .header p {
+        font-size: 0.85rem;
+        text-align: center;
+        line-height: 1.4;
+    }
+
+    .divider hr {
+        width: 80%;
+    }
+
+    .info {
+        padding: 8px;
+        margin-bottom: 15px;
+    }
+
+    .info h2 {
+        font-size: 0.95rem;
+    }
+
+    .info p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .form {
+        gap: 8px;
+    }
+
+    .form h2 {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .form label {
+        font-size: 0.9rem;
+    }
+
+    .form input,
+    .form textarea {
+        padding: 6px;
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+
+    .form textarea {
+        min-height: 100px;
+    }
+
+    .form button {
+        padding: 8px;
+        font-size: 0.9rem;
+        margin-top: 5px;
+    }
+
+    .model3D {
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        /* ثابت في الخلفية */
+        top: 0;
+        left: 0;
+        z-index: 0;
+        /* خلف النموذج */
+    }
+
+    .spacer {
+        height: 15px;
+    }
+}
+
+/* Very small mobile devices */
+@media (max-width: 320px) {
+    body {
+        padding: 5px;
+        margin-top: 10px;
+    }
+
+    .form-container {
+        padding: 15px 10px;
+        margin-top: 40px;
+        max-width: 95%;
+    }
+
+    .header h1 {
+        font-size: 1.3rem;
+    }
+
+    .header p {
+        font-size: 0.8rem;
+    }
+
+    .info h2 {
+        font-size: 0.9rem;
+    }
+
+    .info p {
+        font-size: 0.8rem;
+    }
+
+    .form h2 {
+        font-size: 0.95rem;
+    }
+
+    .form label {
+        font-size: 0.85rem;
+    }
+
+    .form input,
+    .form textarea {
+        padding: 5px;
+        font-size: 0.85rem;
+    }
+
+    .form button {
+        padding: 7px;
+        font-size: 0.85rem;
+    }
+
+    .model3D {
+        height: 100vh;
+        width: 100vw;
+    }
+}
+
+/* Landscape orientation for mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    body {
+        padding: 5px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+
+    .form-container {
+        margin: 10px auto;
+        max-width: 90%;
+        margin-top: 40px;
+    }
+
+    .model3D {
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .spacer {
+        height: 10px;
+    }
+
+    .info {
+        padding: 6px;
+        margin-bottom: 10px;
+    }
+
+    .form input,
+    .form textarea {
+        padding: 5px;
+    }
+
+    .form textarea {
+        min-height: 60px;
+    }
+}
+
+/* منع النموذج من الخروج في الشاشات الصغيرة جداً */
+@media (max-width: 375px) {
+    .form-container {
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+    }
+}
+
+/* Large screens */
+@media (min-width: 1440px) {
+    body {
+        padding: 40px;
+    }
+
+    .form-container {
+        max-width: 450px;
+        padding: 40px 30px;
+    }
+
+    .header h1 {
+        font-size: 2.2rem;
+    }
+
+    .header p {
+        font-size: 1.1rem;
+    }
+
+    .info {
+        padding: 15px;
+    }
+
+    .info h2 {
+        font-size: 1.2rem;
+    }
+
+    .info p {
+        font-size: 1rem;
+    }
+
+    .form h2 {
+        font-size: 1.3rem;
+    }
+
+    .form label {
+        font-size: 1.1rem;
+    }
+
+    .form input,
+    .form textarea {
+        padding: 10px;
+        font-size: 1.1rem;
+    }
+
+    .form button {
+        padding: 12px;
+        font-size: 1.1rem;
+    }
+}
+
+/* تحسين للشاشات متوسطة الحجم */
+@media (min-width: 481px) and (max-width: 767px) {
+    .form-container {
+        max-width: 90%;
+        margin-top: 40px;
+    }
+
+    body {
+        justify-content: flex-start;
+        padding-top: 40px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .model3D {
+        display: none;
+    }
+
+    body {
+        background: white !important;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-container {
+        box-shadow: none;
+        background: white;
+        max-width: 100%;
+        margin: 0;
+        padding: 20px;
+        border: 1px solid #ccc;
+    }
+
+    .form button {
+        display: none;
+    }
+}
